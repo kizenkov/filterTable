@@ -4,7 +4,7 @@ import {useState} from 'react';
 import {Paginate} from './Paginate';
 
 function App() {
-    let rowsOnPage = 20 //set number of rows on page
+    let rowsOnPage = 22 //set number of rows on page
     let pagePortion = 3 //set number of pages in pagination
 
     const [state, setState] = useState(data)
@@ -111,10 +111,10 @@ function App() {
             <table border='1' className='table'>
                 <thead>
                 <tr>
-                    <td>Date</td>
-                    <td>Title</td>
-                    <td>Number</td>
-                    <td>Distance</td>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Number</th>
+                    <th>Distance</th>
                 </tr>
                 </thead>
                 <tbody>
