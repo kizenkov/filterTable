@@ -1,0 +1,22 @@
+.App {
+    text-align: center;
+}
+
+.elementOfSort {
+    margin: 5vh 5px 9vh;
+}
+
+.table {
+    margin: 0 20vw 3vh;
+    text-align: center;
+    width: 60vw;
+}
+
+.page {
+    margin: 15px;
+    cursor: pointer;
+}
+
+.currentPage {
+    font-weight: bold;
+}
