@@ -3,20 +3,26 @@
 }
 
 .elementOfSort {
-    margin: 5vh 5px 9vh;
+    margin: 0 5px 6vh;
 }
 
 .table {
-    margin: 0 20vw 3vh;
+    margin: 0 15vw 3vh;
     text-align: center;
-    width: 60vw;
+    width: 70vw;
 }
 
 .page {
-    margin: 15px;
+    margin: 0 15px 10vh;
     cursor: pointer;
 }
 
 .currentPage {
     font-weight: bold;
+}
+
+.noWrap {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    margin: 10px;
 }

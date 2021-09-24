@@ -51,7 +51,7 @@ function App() {
                     ))
             }
         }
-        
+
         const getSortTable = (column) => {
             if (e.target[0].value === column) {
                 switch (e.target[1].value) {
@@ -89,25 +89,34 @@ function App() {
     return (
         <div className='App' onSubmit={sort}>
             <form>
-                <label htmlFor='column' className='elementOfSort'>Column:</label>
-                <select name='column' id='col' className='elementOfSort'>
-                    <option> </option>
-                    <option value='title'>Title</option>
-                    <option value='number'>Number</option>
-                    <option value='distance'>Distance</option>
-                </select>
-                <label htmlFor='condition' className='elementOfSort'>Condition:</label>
-                <select name='condition' id='condition' className='elementOfSort'>
-                    <option> </option>
-                    <option value='equals'>Equals</option>
-                    <option value='contains'>Contains</option>
-                    <option value='more'>More</option>
-                    <option value='less'>Less</option>
-                </select>
-                <label htmlFor='value' className='elementOfSort'>Value:</label>
-                <input type='text' name='value' id='value' className='elementOfSort'/>
-                <button type='submit'>To sort</button>
+                <div className='noWrap'>
+                    <label htmlFor='column' className='elementOfSort'>Column: </label>
+                    <select name='column' id='column' className='elementOfSort'>
+                        <option></option>
+                        <option value='title'>Title</option>
+                        <option value='number'>Number</option>
+                        <option value='distance'>Distance</option>
+                    </select>
+                </div>
+                <div className='noWrap'>
+                    <label htmlFor='condition' className='elementOfSort'>Condition: </label>
+                    <select name='condition' id='condition' className='elementOfSort'>
+                        <option></option>
+                        <option value='equals'>Equals</option>
+                        <option value='contains'>Contains</option>
+                        <option value='more'>More</option>
+                        <option value='less'>Less</option>
+                    </select>
+                </div>
+                <div className='noWrap'>
+                    <label htmlFor='value' className='elementOfSort'>Value: </label>
+                    <input type='text' name='value' id='value' className='elementOfSort'/>
+                </div>
+                <div className='noWrap'>
+                    <button type='submit'>To sort</button>
+                </div>
             </form>
+            <br/>
             <table border='1' className='table'>
                 <thead>
                 <tr>
