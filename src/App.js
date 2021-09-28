@@ -1,11 +1,27 @@
 import './App.css';
-import data from './data.json';
-import {useState} from 'react';
+import dataTable from './dataTable.json';
+import {useEffect, useState} from 'react';
 import {Paginate} from './Paginate';
+import axios from 'axios';
 
 function App() {
     let rowsOnPage = 22 //set number of rows on page
     let pagePortion = 3 //set number of pages in pagination
+
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:4000/src/server')
+            .then((response) => {
+                setData(response.data)
+                setState(response.data)
+            })
+            .catch((err) => {
+                alert(err)
+                setData(dataTable)
+                setState(dataTable)
+            })
+    }, [])
 
     const [state, setState] = useState(data)
     const [start, setStart] = useState(0) //first item on page
@@ -27,16 +43,10 @@ function App() {
         if (e.target[0].value === 'title') {
             switch (e.target[1].value) {
                 case 'equals':
-                    setState(data.slice().filter(el => el['title'].toLowerCase() === e.target[2].value.toLowerCase()).sort((a, b) => {
-                            return a['title'] > b['title'] ? 1 : a['title'] < b['title'] ? -1 : 0
-                        }
-                    ))
+                    setState(data.slice().filter(el => el['title'].toLowerCase() === e.target[2].value.toLowerCase()))
                     break;
                 case 'contains':
-                    setState(data.slice().filter(el => el['title'].toLowerCase().includes(e.target[2].value.toLowerCase())).sort((a, b) => {
-                            return a['title'] > b['title'] ? 1 : a['title'] < b['title'] ? -1 : 0
-                        }
-                    ))
+                    setState(data.slice().filter(el => el['title'].toLowerCase().includes(e.target[2].value.toLowerCase())))
                     break;
                 case 'more':
                     setState(data.slice().filter(el => el['title'].toLowerCase() > e.target[2].value.toLowerCase()))
@@ -56,10 +66,10 @@ function App() {
             if (e.target[0].value === column) {
                 switch (e.target[1].value) {
                     case 'equals':
-                        setState(data.slice().filter(el => el[column] === +e.target[2].value).sort((a, b) => a[column] - b[column]))
+                        setState(data.slice().filter(el => el[column] === +e.target[2].value))
                         break;
                     case 'contains':
-                        setState(data.slice().filter(el => el[column].toString().includes(e.target[2].value)).sort((a, b) => a[column] - b[column]))
+                        setState(data.slice().filter(el => el[column].toString().includes(e.target[2].value)))
                         break;
                     case 'more':
                         setState(data.slice().filter(el => el[column] > +e.target[2].value))
@@ -92,7 +102,7 @@ function App() {
                 <div className='noWrap'>
                     <label htmlFor='column' className='elementOfSort'>Column: </label>
                     <select name='column' id='column' className='elementOfSort'>
-                        <option></option>
+                        <option/>
                         <option value='title'>Title</option>
                         <option value='number'>Number</option>
                         <option value='distance'>Distance</option>
@@ -101,7 +111,7 @@ function App() {
                 <div className='noWrap'>
                     <label htmlFor='condition' className='elementOfSort'>Condition: </label>
                     <select name='condition' id='condition' className='elementOfSort'>
-                        <option></option>
+                        <option/>
                         <option value='equals'>Equals</option>
                         <option value='contains'>Contains</option>
                         <option value='more'>More</option>
@@ -113,7 +123,7 @@ function App() {
                     <input type='text' name='value' id='value' className='elementOfSort'/>
                 </div>
                 <div className='noWrap'>
-                    <button type='submit'>To sort</button>
+                    <button type='submit'>To filter</button>
                 </div>
             </form>
             <br/>

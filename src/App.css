@@ -26,3 +26,8 @@
     flex-wrap: nowrap;
     margin: 10px;
 }
+
+button {
+    padding: 5px;
+    font-size: 1.1em;
+}
